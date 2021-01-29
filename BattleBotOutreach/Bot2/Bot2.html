@@ -71,13 +71,11 @@
 </head>
 <body>
   <div class="topnav">
-    <h1>ESP WebSocket Sumobot 1 Server</h1>
+    <h1>ESP Sumobot 2 </h1>
   </div>
   <div class="content">
     <div class="card">
-      <h2>Output - GPIO 2</h2>
-      <p class="state">state: <span id="state">%STATE%</span></p>
-      <p><button id="button" class="button">Toggle</button></p>
+      <p class="state">state: <span id="state">Connecting...</span></p>
     </div>
   </div>
   <div>
@@ -110,7 +108,7 @@
       state = "ON";
     }
     else{
-      state = "OFF";
+      state = "Recieving Commands";
     }
     document.getElementById('state').innerHTML = state;
   }
@@ -119,7 +117,6 @@
     initButton();
   }
   function initButton() {
-    document.getElementById('button').addEventListener('click', forward);
     document.addEventListener('keydown', keyDown);
     document.addEventListener('keyup', keyUp);
   }
