@@ -1,1 +1,1 @@
-# multiplayerSumoBot
+# Multiplayer Sumobot
