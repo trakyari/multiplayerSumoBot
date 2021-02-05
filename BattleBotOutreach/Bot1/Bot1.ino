@@ -32,6 +32,7 @@ bool liftState = 0;
 bool lowerState = 0;
 
 // Replace with your network credentials
+int userCount = 0;
 const char* ssid = "Abdullai";
 const char* password = "babush7.";
 
@@ -152,7 +153,7 @@ const char index_html[] PROGMEM = R"rawliteral(
       state = "ON";
     }
     else{
-      state = "OFF";
+      state = "CONNECTED";
     }
     document.getElementById('state').innerHTML = state;
   }
@@ -285,11 +286,17 @@ void onEvent(AsyncWebSocket *server, AsyncWebSocketClient *client, AwsEventType 
     switch (type) {
       case WS_EVT_CONNECT:
         Serial.printf("WebSocket client #%u connected from %s\n", client->id(), client->remoteIP().toString().c_str());
-        //ws.enable(false);
+        userCount++;
+        if(userCount >= 2){
+          ws.enable(false);
+        }
         break;
       case WS_EVT_DISCONNECT:
         Serial.printf("WebSocket client #%u disconnected\n", client->id());
-        //ws.enable(true);
+        userCount--;
+        if(userCount < 2){
+          ws.enable(true);
+        }
         leftMotor.write(90);
         rightMotor.write(90);
         break;
@@ -314,7 +321,7 @@ String processor(const String& var){
       return "FORWARD";
     }
     else{
-      return "BACKWARDS";
+      return "CONNECTED";
     }
   }
 }
