@@ -32,8 +32,8 @@ bool liftState = 0;
 bool lowerState = 0;
 
 // Replace with your network credentials
-const char* ssid = "GRDTuned";
-const char* password = "aaudirs4";
+const char* ssid = "Abdullai";
+const char* password = "babush7.";
 
 bool ledState = 0;
 const int ledPin = 2;
