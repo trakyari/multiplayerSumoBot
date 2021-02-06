@@ -17,27 +17,27 @@
 Servo leftMotor;
 Servo rightMotor;
 Servo actuator;
+Servo leftFlip;
+Servo rightFlip;
 
+
+int leftFlipPin = 14;
+int rightFlipPin = 12;
 int sensorPin = 12;
 int potPin = 14;
 float leftSpeed = 90;
 float rightSpeed = 90;
 float actuatorSpeed = 90;
-bool leftState = 0;
-bool rightState = 0;
-bool fowardState = 0;
-bool backwardState = 0;
 bool finderState = 0;
 bool liftState = 0;
 bool lowerState = 0;
+bool flip;
 
 // Replace with your network credentials
 int userCount = 0;
 const char* ssid = "Abdullai";
 const char* password = "babush7.";
 
-bool ledState = 0;
-const int ledPin = 2;
 
 // Create AsyncWebServer object on port 80
 AsyncWebServer server(2000);
@@ -232,7 +232,7 @@ const char index_html[] PROGMEM = R"rawliteral(
 )rawliteral";
 
 void notifyClients() {
-  ws.textAll(String(ledState));
+  //ws.textAll(String(ledState));
 }
 
 void handleWebSocketMessage(void *arg, uint8_t *data, size_t len) {
@@ -266,8 +266,8 @@ void handleWebSocketMessage(void *arg, uint8_t *data, size_t len) {
       rightSpeed = 90;
       notifyClients();
     }
-    else if (strcmp((char*)data, "find") == 0) {
-      finderState = 1;
+    else if (strcmp((char*)data, "flip") == 0) {
+      flip = 1;
       notifyClients();
     }
     else if (strcmp((char*)data, "lift") == 0){
@@ -317,7 +317,7 @@ void initWebSocket() {
 String processor(const String& var){
   Serial.println(var);
   if(var == "STATE"){
-    if (ledState){
+    if (flip){
       return "FORWARD";
     }
     else{
@@ -332,12 +332,12 @@ void setup(){
 
   leftMotor.attach(13);
   rightMotor.attach(15);
+  leftFlip.attach(leftFlipPin);
+  rightFlip.attach(rightFlipPin);
 
-  pinMode(ledPin, OUTPUT);
-  digitalWrite(ledPin, LOW);
-  pinMode(potPin, INPUT);
+  //pinMode(potPin, INPUT);
 
-  pinMode(sensorPin, INPUT);
+  //pinMode(sensorPin, INPUT);
   // Connect to Wi-Fi
   WiFi.begin(ssid, password);
   while (WiFi.status() != WL_CONNECTED) {
@@ -364,6 +364,14 @@ void setup(){
 
 void loop() {
   ws.cleanupClients();
+
+  while(flip){
+    leftFlip.write(0);
+    rightFlip.write(0);
+    
+  }
+    
+  
   
   // Finder Code
   while(finderState == 1){
