@@ -20,7 +20,12 @@ app.post("/consumer", async ({ body }, res) => {
         iceServers: [
             {
                 urls: "stun:stun.l.google.com:19302"
-            }
+            },
+            {                                    
+                urls: "turn:turnsumobot.ddns.net:5349",        
+                username: "ares",                                       
+                credential: "123Etcdupage"                              
+            }  
         ]
     });
     const desc = new webrtc.RTCSessionDescription(body.sdp);
@@ -40,7 +45,12 @@ app.post('/broadcast', async ({ body }, res) => {
         iceServers: [
             {
                 urls: "stun:stun.l.google.com:19302"
-            }
+            },                                   
+            {                                    
+                urls: "turn:turnsumobot.ddns.net:5349",       
+                username: "ares",                                       
+                credential: "123Etcdupage"                              
+            }  
         ]
     });
     peer.ontrack = (e) => handleTrackEvent(e, peer);
