@@ -68,6 +68,7 @@
 <title>ESP Web Server</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="data:,">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
 </head>
 <body>
   <div class="topnav">
@@ -81,7 +82,7 @@
     </div>
   </div>
   <div>
-      <iframe width=1280 height=720 src="https://www.youtube.com/embed/RE2PLyFqCzE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <video autoplay id="video"></video>
   </div>
   <div>
     <img src ="../assets/controls.svg" width = 25%/>
@@ -152,8 +153,42 @@
   function onLoad(event) {
     initWebSocket2();
     initWebSocket3();
+    initLivestream();
     initButton();
   }
+  
+  async function initLivestream() {
+    const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+    document.getElementById("video").srcObject = stream;
+    const peer = createPeer();
+    stream.getTracks().forEach(track => peer.addTrack(track, stream));
+  }
+
+  function createPeer() {
+    const peer = new RTCPeerConnection({
+        iceServers: [
+            {
+                urls: "stun:stun.stunprotocol.org"
+            }
+        ]
+    });
+    peer.onnegotiationneeded = () => handleNegotiationNeededEvent(peer);
+
+    return peer;
+  }
+
+  async function handleNegotiationNeededEvent(peer) {
+    const offer = await peer.createOffer();
+    await peer.setLocalDescription(offer);
+    const payload = {
+        sdp: peer.localDescription
+    };
+
+    const { data } = await axios.post('/broadcast', payload);
+    const desc = new RTCSessionDescription(data.sdp);
+    peer.setRemoteDescription(desc).catch(e => console.log(e));
+  }
+
 
   function initButton() {
     document.getElementById('button').addEventListener('click', forward);
