@@ -22,8 +22,7 @@ app.post("/consumer", async ({ body }, res) => {
                 urls: "stun:stun.l.google.com:19302"
             },
             {                                    
-                urls: "turn:turnsumobot.ddns.net:3478",        
-                username: "guest",                                       
+                urls: "turn:guest@sumobot.ddns.net:3478",                                           
                 credential: "somepassword"                              
             }  
         ]
