@@ -22,9 +22,9 @@ app.post("/consumer", async ({ body }, res) => {
                 urls: "stun:stun.l.google.com:19302"
             },
             {                                    
-                urls: "turn:turnsumobot.ddns.net:5349",        
-                username: "ares",                                       
-                credential: "123Etcdupage"                              
+                urls: "turn:turnsumobot.ddns.net:3478",        
+                username: "guest",                                       
+                credential: "somepassword"                              
             }  
         ]
     });
@@ -47,9 +47,9 @@ app.post('/broadcast', async ({ body }, res) => {
                 urls: "stun:stun.l.google.com:19302"
             },                                   
             {                                    
-                urls: "turn:turnsumobot.ddns.net:5349",       
-                username: "ares",                                       
-                credential: "123Etcdupage"                              
+                urls: "turn:turnsumobot.ddns.net:3478",       
+                username: "guest",                                       
+                credential: "somepassword"                              
             }  
         ]
     });
