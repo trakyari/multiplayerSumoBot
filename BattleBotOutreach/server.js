@@ -74,7 +74,7 @@ function handleTrackEvent(e, peer) {
     senderStream = e.streams[0];
 };
 
-app.listen(port, () => console.log('server started'));
+app.listen(5000, () => console.log('webRTC server started'));
 
 // Express send out static webpage code
 // Index
@@ -112,5 +112,5 @@ app.get('/admin', function(req, res) {
 });
 
 app.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
+  console.log(`NodeJS Server running at http://${hostname}:${port}/`);
 });
