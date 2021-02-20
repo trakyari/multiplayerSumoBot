@@ -1,6 +1,6 @@
-window.onload = () => {
+/* window.onload = () => {
   initStream();
-}
+} */
 
 async function initStream(){
   const peer = createPeer();

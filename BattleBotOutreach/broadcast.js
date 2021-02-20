@@ -1,6 +1,6 @@
-window.onload = () => {
+/*  = () => {
     initLivestream();
-}
+} */
 
 async function initLivestream() {
     const stream = await navigator.mediaDevices.getUserMedia({ video: true });
