@@ -15,7 +15,8 @@ var path = require('path');
 // webRTC implementation for live stream broadcast
 let senderStream;
 
-app.use(express.static(__dirname)); // sets the directory location , in this case the current directory
+app.use(express.static(__dirname)); // main directory
+app.use(express.static('assets'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
