@@ -135,7 +135,7 @@
       halt();
     }
     else if(event.key == 'f'){
-      finder();
+      flip();
     }
     else if(event.key == 'l'){
       lift();
@@ -173,7 +173,7 @@
     websocket.send('halt');
   }
   function finder(){
-    websocket.send('find');
+    websocket.send('flip');
   }
   function lift(){
     websocket.send('lift');

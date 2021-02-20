@@ -17,26 +17,27 @@
 Servo leftMotor;
 Servo rightMotor;
 Servo actuator;
+Servo leftFlip;
+Servo rightFlip;
 
+
+int leftFlipPin = 14;
+int rightFlipPin = 12;
 int sensorPin = 12;
 int potPin = 14;
 float leftSpeed = 90;
 float rightSpeed = 90;
 float actuatorSpeed = 90;
-bool leftState = 0;
-bool rightState = 0;
-bool fowardState = 0;
-bool backwardState = 0;
 bool finderState = 0;
 bool liftState = 0;
 bool lowerState = 0;
+bool flip;
 
 // Replace with your network credentials
-const char* ssid = "Abdullai";
-const char* password = "babush7.";
+int userCount = 0;
+const char* ssid = "GRDTuned";
+const char* password = "aaudirs4";
 
-bool ledState = 0;
-const int ledPin = 2;
 
 // Create AsyncWebServer object on port 80
 AsyncWebServer server(2001);
@@ -152,7 +153,7 @@ const char index_html[] PROGMEM = R"rawliteral(
       state = "ON";
     }
     else{
-      state = "OFF";
+      state = "CONNECTED";
     }
     document.getElementById('state').innerHTML = state;
   }
@@ -179,7 +180,7 @@ const char index_html[] PROGMEM = R"rawliteral(
       halt();
     }
     else if(event.key == 'f'){
-      finder();
+      flip();
     }
     else if(event.key == 'l'){
       lift();
@@ -216,8 +217,8 @@ const char index_html[] PROGMEM = R"rawliteral(
   function halt(){
     websocket.send('halt');
   }
-  function finder(){
-    websocket.send('find');
+  function flip(){
+    websocket.send('flip');
   }
   function lift(){
     websocket.send('lift');
@@ -231,7 +232,7 @@ const char index_html[] PROGMEM = R"rawliteral(
 )rawliteral";
 
 void notifyClients() {
-  ws.textAll(String(ledState));
+  //ws.textAll(String(ledState));
 }
 
 void handleWebSocketMessage(void *arg, uint8_t *data, size_t len) {
@@ -243,30 +244,35 @@ void handleWebSocketMessage(void *arg, uint8_t *data, size_t len) {
     if (strcmp((char*)data, "forward") == 0) {
       leftSpeed = 150;
       rightSpeed = 150;
+      Serial.println("Up");
       notifyClients();
     }
     else if (strcmp((char*)data, "backward") == 0) {
       leftSpeed = 30;
       rightSpeed = 30;
+      Serial.println("down");
       notifyClients();
     }
     else if (strcmp((char*)data, "left") == 0) {
       leftSpeed = 30;
       rightSpeed = 150;
+      Serial.println("left");
       notifyClients();
     }
     else if (strcmp((char*)data, "right") == 0) {
       leftSpeed = 150;
       rightSpeed = 30;
+      Serial.println("right");
       notifyClients();
     }
     else if (strcmp((char*)data, "halt") == 0) {
       leftSpeed = 90;
       rightSpeed = 90;
+      Serial.println("stop");
       notifyClients();
     }
-    else if (strcmp((char*)data, "find") == 0) {
-      finderState = 1;
+    else if (strcmp((char*)data, "flip") == 0) {
+      flip = 1;
       notifyClients();
     }
     else if (strcmp((char*)data, "lift") == 0){
@@ -285,11 +291,17 @@ void onEvent(AsyncWebSocket *server, AsyncWebSocketClient *client, AwsEventType 
     switch (type) {
       case WS_EVT_CONNECT:
         Serial.printf("WebSocket client #%u connected from %s\n", client->id(), client->remoteIP().toString().c_str());
-        //ws.enable(false);
+        userCount++;
+        if(userCount >= 2){
+          ws.enable(false);
+        }
         break;
       case WS_EVT_DISCONNECT:
         Serial.printf("WebSocket client #%u disconnected\n", client->id());
-        //ws.enable(true);
+        userCount--;
+        if(userCount < 2){
+          ws.enable(true);
+        }
         leftMotor.write(90);
         rightMotor.write(90);
         break;
@@ -310,11 +322,11 @@ void initWebSocket() {
 String processor(const String& var){
   Serial.println(var);
   if(var == "STATE"){
-    if (ledState){
+    if (flip){
       return "FORWARD";
     }
     else{
-      return "BACKWARDS";
+      return "CONNECTED";
     }
   }
 }
@@ -325,12 +337,12 @@ void setup(){
 
   leftMotor.attach(13);
   rightMotor.attach(15);
+  leftFlip.attach(leftFlipPin);
+  rightFlip.attach(rightFlipPin);
 
-  pinMode(ledPin, OUTPUT);
-  digitalWrite(ledPin, LOW);
-  pinMode(potPin, INPUT);
+  //pinMode(potPin, INPUT);
 
-  pinMode(sensorPin, INPUT);
+  //pinMode(sensorPin, INPUT);
   // Connect to Wi-Fi
   WiFi.begin(ssid, password);
   while (WiFi.status() != WL_CONNECTED) {
@@ -357,6 +369,20 @@ void setup(){
 
 void loop() {
   ws.cleanupClients();
+
+  int time_now = millis();
+  int period = 100;
+  while(flip){
+    leftFlip.write(12);
+    rightFlip.write(151);
+    while(millis() < time_now + period){
+    }  
+    leftFlip.write(132);
+    rightFlip.write(23);
+    flip = 0;
+  }
+    
+  
   
   // Finder Code
   while(finderState == 1){

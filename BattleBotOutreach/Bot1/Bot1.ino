@@ -35,8 +35,8 @@ bool flip;
 
 // Replace with your network credentials
 int userCount = 0;
-const char* ssid = "Abdullai";
-const char* password = "babush7.";
+const char* ssid = "GRDTuned";
+const char* password = "aaudirs4";
 
 
 // Create AsyncWebServer object on port 80
@@ -244,26 +244,31 @@ void handleWebSocketMessage(void *arg, uint8_t *data, size_t len) {
     if (strcmp((char*)data, "forward") == 0) {
       leftSpeed = 150;
       rightSpeed = 150;
+      Serial.println("Up");
       notifyClients();
     }
     else if (strcmp((char*)data, "backward") == 0) {
       leftSpeed = 30;
       rightSpeed = 30;
+      Serial.println("down");
       notifyClients();
     }
     else if (strcmp((char*)data, "left") == 0) {
       leftSpeed = 30;
       rightSpeed = 150;
+      Serial.println("left");
       notifyClients();
     }
     else if (strcmp((char*)data, "right") == 0) {
       leftSpeed = 150;
       rightSpeed = 30;
+      Serial.println("right");
       notifyClients();
     }
     else if (strcmp((char*)data, "halt") == 0) {
       leftSpeed = 90;
       rightSpeed = 90;
+      Serial.println("stop");
       notifyClients();
     }
     else if (strcmp((char*)data, "flip") == 0) {
