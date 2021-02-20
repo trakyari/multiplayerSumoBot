@@ -1,3 +1,7 @@
+window.onload = () => {
+  initStream();
+}
+
 async function initStream(){
   const peer = createPeer();
   peer.addTransceiver("video", { direction: "recvonly"})
