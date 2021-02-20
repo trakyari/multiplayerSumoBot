@@ -68,6 +68,8 @@
   </style>
 <title>ESP Web Server</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+<script src="../viewer.js" type="text/javascript"></script>
 </head>
 <body>
   <div class="topnav">
@@ -80,8 +82,8 @@
     </div>
   </div>
   <div>
-      <iframe width=640 height=360 src="https://www.youtube.com/embed/RE2PLyFqCzE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-  </div>
+    <video autoplay id='video'></video>
+</div>
   <div>
     <img src ="../assets/controls.svg" width = 25%/>
   </div>
@@ -116,6 +118,7 @@
   function onLoad(event) {
     initWebSocket();
     initButton();
+    initStream();
   }
   function initButton() {
     document.addEventListener('keydown', keyDown);
