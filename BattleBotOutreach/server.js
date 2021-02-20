@@ -1,6 +1,7 @@
 // Server.js 
 const hostname = 'localhost';
 const port = 3000;
+const webRTCPort = 5000;
 // webRTC 
 const express = require('express');
 const app = express();
@@ -14,7 +15,7 @@ var path = require('path');
 // webRTC implementation for live stream broadcast
 let senderStream;
 
-app.use(express.static('public'));
+app.use(express.static(__dirname)); // sets the directory location , in this case the current directory
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -74,7 +75,7 @@ function handleTrackEvent(e, peer) {
     senderStream = e.streams[0];
 };
 
-app.listen(5000, () => console.log('webRTC server started'));
+app.listen(webRTCPort, () => console.log('webRTC server started'));
 
 // Express send out static webpage code
 // Index
