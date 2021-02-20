@@ -7,8 +7,8 @@ const app = express();
 const bodyParser = require('body-parser');
 const webrtc = require("wrtc");
 // Express
-var express = require('express');
-var app = express();
+// var express = require('express');
+// var app = express();
 var path = require('path');
 
 // webRTC implementation for live stream broadcast
