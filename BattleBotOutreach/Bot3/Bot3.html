@@ -1,6 +1,6 @@
 <!DOCTYPE HTML><html>
 <head>
-  <title>ESP Web Server</title>
+  <title>ESP Web Server 1</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="data:,">
   <style>
@@ -68,10 +68,11 @@
 <title>ESP Web Server</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="data:,">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
 </head>
 <body>
   <div class="topnav">
-    <h1>ESP WebSocket Sumobot 3 Server</h1>
+    <h1>ESP WebSocket Sumobot 1 Server</h1>
   </div>
   <div class="content">
     <div class="card">
@@ -79,13 +80,13 @@
     </div>
   </div>
   <div>
-      <iframe width=640 height=360 src="https://www.youtube.com/embed/RE2PLyFqCzE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <video autoplay id='video'></video>
   </div>
   <div>
-    <img src ="data/controls.png" width = 25%/>
+    <img src ="assets/controls.svg" width = 25%/>
   </div>
 <script>
-  var gateway = `wss://sumobot.ddns.net/testproxyBot3`;
+  var gateway = `wss://sumobot.ddns.net/testproxy`; // points to ESP
   var websocket;
   window.addEventListener('load', onLoad);
   function initWebSocket() {
@@ -108,13 +109,53 @@
       state = "ON";
     }
     else{
-      state = "OFF";
+      state = "CONNECTED";
     }
     document.getElementById('state').innerHTML = state;
   }
+  async function initStream(){
+      const peer = createPeer();
+      peer.addTransceiver("video", { direction: "recvonly"})
+  }
+
+  function createPeer() {
+    const peer = new RTCPeerConnection({
+        iceServers: [
+            {
+                urls: "stun:stun.l.google.com:19302"
+            },
+            {                                    
+                urls: "turn:guest@sumobot.ddns.net:3478",                                            
+                credential: "somepassword"                              
+            }  
+        ]
+    });
+    peer.ontrack = handleTrackEvent;
+    peer.onnegotiationneeded = () => handleNegotiationNeededEvent(peer);
+
+    return peer;
+  }
+
+  async function handleNegotiationNeededEvent(peer) {
+    const offer = await peer.createOffer();
+    await peer.setLocalDescription(offer);
+    const payload = {
+        sdp: peer.localDescription
+    };
+
+    const { data } = await axios.post('/consumer', payload);
+    const desc = new RTCSessionDescription(data.sdp);
+    peer.setRemoteDescription(desc).catch(e => console.log(e));
+  }
+
+  function handleTrackEvent(e) {
+    document.getElementById("video").srcObject = e.streams[0];
+  };
+
   function onLoad(event) {
     initWebSocket();
     initButton();
+    initStream();
   }
   function initButton() {
     document.addEventListener('keydown', keyDown);

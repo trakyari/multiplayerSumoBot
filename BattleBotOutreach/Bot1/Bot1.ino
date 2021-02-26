@@ -370,10 +370,16 @@ void setup(){
 void loop() {
   ws.cleanupClients();
 
+  int time_now = millis();
+  int period = 500;
   while(flip){
-    leftFlip.write(0);
-    rightFlip.write(0);
-    
+    leftFlip.write(12);
+    rightFlip.write(151);
+    while(millis() < time_now + period){
+    }  
+    leftFlip.write(132);
+    rightFlip.write(23);
+    flip = 0;
   }
     
   
