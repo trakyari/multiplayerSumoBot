@@ -69,6 +69,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="data:,">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+<script src="../broadcast.js" type="text/javascript"></script>
 </head>
 <body>
   <div class="topnav">
@@ -150,14 +151,7 @@
     document.getElementById('state').innerHTML = state;
   }
 
-  function onLoad(event) {
-    initWebSocket2();
-    initWebSocket3();
-    initLivestream();
-    initButton();
-  }
-  
-  async function initLivestream() {
+  /* async function initLivestream() {
     const stream = await navigator.mediaDevices.getUserMedia({ video: true });
     document.getElementById("video").srcObject = stream;
     const peer = createPeer();
@@ -171,7 +165,8 @@
                 urls: "stun:stun.l.google.com:19302"
             },
             {
-                urls: "turn:guest@sumobot.ddns.net:3478",
+                urls: "turn:sumobot.ddns.net:3478",
+                username: "guest", 
                 credential: "somepassword"
             }
         ]
@@ -191,9 +186,15 @@
     const { data } = await axios.post('/broadcast', payload);
     const desc = new RTCSessionDescription(data.sdp);
     peer.setRemoteDescription(desc).catch(e => console.log(e));
+  } */
+ 
+  function onLoad(event) {
+    initWebSocket2();
+    initWebSocket3();
+    initLivestream();
+    initButton();
   }
-
-
+  
   function initButton() {
     document.getElementById('button').addEventListener('click', forward);
     document.addEventListener('keydown', keyDown);

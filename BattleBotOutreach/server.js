@@ -1,20 +1,26 @@
 // Server.js 
 const hostname = 'localhost';
 const port = 3000;
+const webRTCPort = 5000;
+// webRTC 
+const express = require('express');
+const app = express();
 const bodyParser = require('body-parser');
 const webrtc = require("wrtc");
-
-
-var express = require('express');
-var app = express();
+// Express
+// var express = require('express');
+// var app = express();
 var path = require('path');
 
+// webRTC implementation for live stream broadcast
 let senderStream;
 
-app.use(express.static('public'));
+app.use(express.static(__dirname)); // main directory
+app.use(express.static('assets'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// Viewer code
 app.post("/consumer", async ({ body }, res) => {
     const peer = new webrtc.RTCPeerConnection({
         iceServers: [
@@ -22,7 +28,8 @@ app.post("/consumer", async ({ body }, res) => {
                 urls: "stun:stun.l.google.com:19302"
             },
             {                                    
-                urls: "turn:guest@sumobot.ddns.net:3478",                                           
+                urls: "turn:sumobot.ddns.net:3478",
+                username: "guest",                                           
                 credential: "somepassword"                              
             }  
         ]
@@ -39,6 +46,7 @@ app.post("/consumer", async ({ body }, res) => {
     res.json(payload);
 });
 
+// Streamer code
 app.post('/broadcast', async ({ body }, res) => {
     const peer = new webrtc.RTCPeerConnection({
         iceServers: [
@@ -46,7 +54,7 @@ app.post('/broadcast', async ({ body }, res) => {
                 urls: "stun:stun.l.google.com:19302"
             },                                   
             {                                    
-                urls: "turn:turnsumobot.ddns.net:3478",       
+                urls: "turn:sumobot.ddns.net:3478",       
                 username: "guest",                                       
                 credential: "somepassword"                              
             }  
@@ -68,8 +76,9 @@ function handleTrackEvent(e, peer) {
     senderStream = e.streams[0];
 };
 
+app.listen(webRTCPort, () => console.log('webRTC server started'));
 
-app.listen(5000, () => console.log('server started'));
+// Express send out static webpage code
 // Index
 app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname + '/index.html'));
@@ -105,5 +114,5 @@ app.get('/admin', function(req, res) {
 });
 
 app.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
+  console.log(`NodeJS Server running at http://${hostname}:${port}/`);
 });
