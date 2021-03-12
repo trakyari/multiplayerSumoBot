@@ -89,34 +89,24 @@
     <img src ="../assets/controls.svg" width = 25%/>
   </div>
 <script>
-  var gatewayBot2 = `wss://104.131.102.200:8081/ws`; 
-  var gatewayBot3 = `wss://104.131.102.200:8082/ws`;
-  var websocket2;
-  var websocket3;
+  var gateway = `wss://104.131.102.200:8086/ws`; 
+  var websocket;
   window.addEventListener('load', onLoad);
 
   function initWebSocket2() {
     console.log('Trying to open a WebSocket connection...');
-    websocket2 = new WebSocket(gatewayBot2);
-    websocket2.onopen    = onOpen2;
-    websocket2.onclose   = onClose2;
-    websocket2.onmessage = onMessage2; // <-- add this line
+    websocket = new WebSocket(gatewayBot);
+    websocket.onopen    = onOpen;
+    websocket.onclose   = onClose;
+    websocket.onmessage = onMessage; // <-- add this line
   }
-
-  function initWebSocket3() {
-    console.log('Trying to open a WebSocket connection...');
-    websocket3 = new WebSocket(gatewayBot3);
-    websocket3.onopen    = onOpen3;
-    websocket3.onclose   = onClose3;
-    websocket3.onmessage = onMessage3; // <-- add this line
-  }
-
+ 
   function onOpen2(event) {
-    console.log('Connection opened with Bot2');
+    console.log('Connection opened with arena');
   }
 
   function onClose2(event) {
-    console.log('Connection closed with Bot2');
+    console.log('Connection closed with arena');
     setTimeout(initWebSocket, 2000);
   }
 
@@ -131,25 +121,7 @@
     document.getElementById('state').innerHTML = state;
   }
 
-  function onOpen3(event) {
-    console.log('Connection opened with Bot3');
-  }
-
-  function onClose3(event) {
-    console.log('Connection closed with Bot3');
-    setTimeout(initWebSocket, 2000);
-  }
-
-  function onMessage3(event) {
-    var state;
-    if (event.data == "1"){
-      state = "ON";
-    }
-    else{
-      state = "OFF";
-    }
-    document.getElementById('state').innerHTML = state;
-  }
+  
 
   /* async function initLivestream() {
     const stream = await navigator.mediaDevices.getUserMedia({ video: true });
@@ -190,7 +162,6 @@
  
   function onLoad(event) {
     initWebSocket2();
-    initWebSocket3();
     initLivestream();
     initButton();
   }
