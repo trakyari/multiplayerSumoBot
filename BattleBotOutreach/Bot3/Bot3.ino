@@ -373,12 +373,12 @@ void loop() {
   int time_now = millis();
   int period = 500;
   while(flip){
-    leftFlip.write(12);
-    rightFlip.write(151);
+    leftFlip.write(30);
+    rightFlip.write(130);
     while(millis() < time_now + period){
     }  
-    leftFlip.write(132);
-    rightFlip.write(23);
+    leftFlip.write(143);
+    rightFlip.write(10);
     flip = 0;
   }
     

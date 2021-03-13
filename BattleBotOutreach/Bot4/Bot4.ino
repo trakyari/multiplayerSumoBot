@@ -17,6 +17,8 @@
 Servo leftMotor;
 Servo rightMotor;
 Servo actuator;
+Servo leftFlip;
+Servo rightFlip;
 
 int sensorPin = 12;
 int potPin = 14;
@@ -30,16 +32,17 @@ bool backwardState = 0;
 bool finderState = 0;
 bool liftState = 0;
 bool lowerState = 0;
+bool flip;
 
 // Replace with your network credentials
-const char* ssid = "Abdullai";
-const char* password = "babush7.";
+const char* ssid = "GRDTuned";
+const char* password = "aaudirs4";
 
 bool ledState = 0;
 const int ledPin = 2;
 
 // Create AsyncWebServer object on port 80
-AsyncWebServer server(2001);
+AsyncWebServer server(2003);
 AsyncWebSocket ws("/ws");
 
 const char index_html[] PROGMEM = R"rawliteral(
@@ -265,8 +268,8 @@ void handleWebSocketMessage(void *arg, uint8_t *data, size_t len) {
       rightSpeed = 90;
       notifyClients();
     }
-    else if (strcmp((char*)data, "find") == 0) {
-      finderState = 1;
+    else if (strcmp((char*)data, "flip") == 0) {
+      flip = 1;
       notifyClients();
     }
     else if (strcmp((char*)data, "lift") == 0){
@@ -357,6 +360,19 @@ void setup(){
 
 void loop() {
   ws.cleanupClients();
+  
+  int time_now = millis();
+  int period = 500;
+  while(flip){
+    leftFlip.write(30);
+    rightFlip.write(123);
+    while(millis() < time_now + period){
+    }  
+    leftFlip.write(91);
+    rightFlip.write(64);
+    flip = 0;
+  }
+    
   
   // Finder Code
   while(finderState == 1){
