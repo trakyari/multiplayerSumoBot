@@ -1,8 +1,10 @@
 <!DOCTYPE HTML><html>
 <head>
-  <title>ESP Web Server</title>
+  <title>Admin Page</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="data:,">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+  <script src="../broadcast.js" type="text/javascript"></script>
   <style>
   html {
     font-family: Arial, Helvetica, sans-serif;
@@ -65,11 +67,6 @@
      font-weight: bold;
    }
   </style>
-<title>ESP Web Server</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="icon" href="data:,">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
-<script src="../broadcast.js" type="text/javascript"></script>
 </head>
 <body>
   <div class="topnav">
@@ -82,23 +79,25 @@
       <p><button id="button" class="button">Toggle</button></p>
     </div>
   </div>
+  <!-- Live stream source -->
   <div>
-      <video autoplay id="video"></video>
+    <video autoplay id="video"></video> 
   </div>
+  <!-- Controls image source -->
   <div>
     <img src ="../assets/controls.svg" width = 25%/>
   </div>
-<script>
-  var gateway = `wss://104.131.102.200:8086/ws`; 
+<script> 
+  var gatewayBot = `wss://104.131.102.200:8086/ws`; 
   var websocket;
   window.addEventListener('load', onLoad);
 
   function initWebSocket2() {
     console.log('Trying to open a WebSocket connection...');
-    websocket = new WebSocket(gatewayBot);
+    websocket = new WebSocket(gatewayBot); // Opens a ws connection with bot
     websocket.onopen    = onOpen;
     websocket.onclose   = onClose;
-    websocket.onmessage = onMessage; // <-- add this line
+    websocket.onmessage = onMessage;
   }
  
   function onOpen2(event) {
@@ -120,8 +119,6 @@
     }
     document.getElementById('state').innerHTML = state;
   }
-
-  
 
   /* async function initLivestream() {
     const stream = await navigator.mediaDevices.getUserMedia({ video: true });
