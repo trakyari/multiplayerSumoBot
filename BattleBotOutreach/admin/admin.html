@@ -92,7 +92,7 @@
   var websocket;
   window.addEventListener('load', onLoad);
 
-  function initWebSocket2() {
+  function initWebSocket() {
     console.log('Trying to open a WebSocket connection...');
     websocket = new WebSocket(gatewayBot); // Opens a ws connection with bot
     websocket.onopen    = onOpen;
@@ -100,16 +100,16 @@
     websocket.onmessage = onMessage;
   }
  
-  function onOpen2(event) {
+  function onOpen(event) {
     console.log('Connection opened with arena');
   }
 
-  function onClose2(event) {
+  function onClose(event) {
     console.log('Connection closed with arena');
     setTimeout(initWebSocket, 2000);
   }
 
-  function onMessage2(event) {
+  function onMessage(event) {
     var state;
     if (event.data == "1"){
       state = "ON";
@@ -158,7 +158,7 @@
   } */
  
   function onLoad(event) {
-    initWebSocket2();
+    initWebSocket();
     initLivestream();
     initButton();
   }
