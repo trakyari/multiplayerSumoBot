@@ -31,12 +31,13 @@ float actuatorSpeed = 90;
 bool finderState = 0;
 bool liftState = 0;
 bool lowerState = 0;
+bool ledState = 0;
 bool flip;
 
 // Replace with your network credentials
 int userCount = 0;
-const char* ssid = "GRDTuned";
-const char* password = "aaudirs4";
+const char* ssid =  "Abdullai";
+const char* password = "babush7.";
 
 
 // Create AsyncWebServer object on port 80
@@ -232,7 +233,7 @@ const char index_html[] PROGMEM = R"rawliteral(
 )rawliteral";
 
 void notifyClients() {
-  //ws.textAll(String(ledState));
+  ws.textAll(String(ledState));
 }
 
 void handleWebSocketMessage(void *arg, uint8_t *data, size_t len) {
@@ -242,26 +243,26 @@ void handleWebSocketMessage(void *arg, uint8_t *data, size_t len) {
   if (info->final && info->index == 0 && info->len == len && info->opcode == WS_TEXT) {
     data[len] = 0;
     if (strcmp((char*)data, "forward") == 0) {
-      leftSpeed = 150;
-      rightSpeed = 150;
+      leftSpeed = 120;
+      rightSpeed = 120;
       Serial.println("Up");
       notifyClients();
     }
     else if (strcmp((char*)data, "backward") == 0) {
-      leftSpeed = 30;
-      rightSpeed = 30;
+      leftSpeed = 60;
+      rightSpeed = 60;
       Serial.println("down");
       notifyClients();
     }
     else if (strcmp((char*)data, "left") == 0) {
-      leftSpeed = 30;
-      rightSpeed = 150;
+      leftSpeed = 120;
+      rightSpeed = 60;
       Serial.println("left");
       notifyClients();
     }
     else if (strcmp((char*)data, "right") == 0) {
-      leftSpeed = 150;
-      rightSpeed = 30;
+      leftSpeed = 60;
+      rightSpeed = 120;
       Serial.println("right");
       notifyClients();
     }
@@ -339,7 +340,8 @@ void setup(){
   rightMotor.attach(15);
   leftFlip.attach(leftFlipPin);
   rightFlip.attach(rightFlipPin);
-
+  leftFlip.write(143);
+  rightFlip.write(10);
   //pinMode(potPin, INPUT);
 
   //pinMode(sensorPin, INPUT);
@@ -372,54 +374,48 @@ void loop() {
 
   int time_now = millis();
   int period = 500;
+  int servoDelay = 50;
+  int time_nowS;
+  
+  int leftTstop = 30;
+  int rightTstop = 130;
+  
+  int rightBstop = 10;
+  int leftBstop = 143;
+
+  leftFlip.write(leftBstop);
+  rightFlip.write(rightBstop);
+  
   while(flip){
-    leftFlip.write(30);
-    rightFlip.write(130);
-    while(millis() < time_now + period){
-    }  
-    leftFlip.write(143);
-    rightFlip.write(10);
+    leftFlip.write(leftBstop);
+    rightFlip.write(rightBstop);
+    while(leftBstop > leftTstop && rightBstop < rightTstop){    
+      leftBstop -=  10;
+      rightBstop += 10;
+      leftFlip.write(leftBstop);
+      rightFlip.write(rightBstop);
+      time_nowS = millis();
+      while(millis() < time_nowS + servoDelay){}
+    }
+ 
+    while(leftBstop < 143 || rightBstop > 10){    
+      leftBstop +=  10;
+      rightBstop -= 10;
+      leftFlip.write(leftBstop);
+      rightFlip.write(rightBstop);
+      time_nowS = millis();
+      while(millis() < time_nowS + servoDelay){}
+    }
+    
+    time_now = millis();
+    while(millis() < time_nowS + period){}    
+    leftFlip.write(10);
+    rightFlip.write(143);
     flip = 0;
   }
     
   
-  
-  // Finder Code
-  while(finderState == 1){
-    Serial.println("In finder mode");
-    Serial.println(digitalRead(sensorPin));
-    if(digitalRead(sensorPin) == 0){
-      leftMotor.write(0);
-      rightMotor.write(0);
-      finderState = 0;
-      Serial.println("Exited finder mode");
-    }
-    leftMotor.write(180);
-    rightMotor.write(180);
-
-    delay(10);
-  }
-
-  while(liftState == 1){
-    actuator.write(180);
-    Serial.print("Lifting     ");
-    Serial.println(analogRead(potPin));
-    if(analogRead(potPin) >= 700){
-      actuator.write(90);
-      liftState = 0;
-    }
-  }
-  
-   while(lowerState == 1){
-    actuator.write(0);
-    Serial.print("Lifting     ");
-    Serial.println(analogRead(potPin));
-    if(analogRead(potPin) < 50){
-      actuator.write(90);
-      lowerState = 0;
-    }
-  }
-  
+ 
   leftMotor.write(leftSpeed);
   rightMotor.write(rightSpeed);
 
