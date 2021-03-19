@@ -32,6 +32,8 @@ bool finderState = 0;
 bool liftState = 0;
 bool lowerState = 0;
 bool flip;
+bool connectionState = 0;
+
 
 // Replace with your network credentials
 int userCount = 0;
@@ -232,7 +234,7 @@ const char index_html[] PROGMEM = R"rawliteral(
 )rawliteral";
 
 void notifyClients() {
-  //ws.textAll(String(ledState));
+  ws.textAll(String(connectionState));
 }
 
 void handleWebSocketMessage(void *arg, uint8_t *data, size_t len) {
@@ -319,10 +321,7 @@ String processor(const String& var){
   if(var == "STATE"){
     if (flip){
       return "FORWARD";
-    }
-    else{
-      return "CONNECTED";
-    }
+    }    }
   }
 }
 
@@ -345,8 +344,6 @@ void setup(){
     Serial.println("Connecting to WiFi..");
   }
 
-  
- 
   // Print ESP Local IP Address
   Serial.println(WiFi.localIP());
 
@@ -370,9 +367,7 @@ void loop() {
     rightFlip.write(0);
     
   }
-    
-  
-  
+
   // Finder Code
   while(finderState == 1){
     Serial.println("In finder mode");

@@ -26,12 +26,11 @@ margin: 0 auto;
 }
 .card {
 background-color: #ecf0f4;
-box-shadow: 2px 2px 12px 1px rgba(140,140,140,.5);
 padding-top:0.1rem;
 padding-bottom:0.1rem;
 }
 .state {
-    font-size: 1.5rem;
+    font-size: 0.5rem;
     color:#8c8c8c;
     font-weight: bold;
 }

@@ -11,13 +11,14 @@
   <div class="bg-grn">
     <h1>Sumobot 1</h1>
   </div>
-  <div class="content">
-    <div class="card">
-      <p class="state">state: <span id="state">Connecting...</span></p>
-    </div>
+  
   </div>
   <div>
       <video autoplay id='video' class="video-stream"></video>
+  </div>
+  <div class="content">
+    <div class="card">
+      <p class="state">STATUS: <span id="state">Connecting...</span></p>
   </div>
 <script>
   var gateway = `wss://sumobot.ddns.net/testproxy`; // points to ESP
@@ -40,10 +41,10 @@
   function onMessage(event) {
     var state;
     if (event.data == "1"){
-      state = "ON";
+      state = "CONNECTED";
     }
     else{
-      state = "CONNECTED";
+      state = "DISCONNECTED";
     }
     document.getElementById('state').innerHTML = state;
   }
