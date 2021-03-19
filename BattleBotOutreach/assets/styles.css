@@ -31,18 +31,18 @@ padding-bottom:0.1rem;
 }
 .state {
     font-size: 0.5rem;
-    color:#8c8c8c;
+    color:gray;
     font-weight: bold;
 }
 
 video {
-    -webkit-transform: scaleX(-1);
-    transform: scaleX(-1);
+    /* -webkit-transform: scaleX(-1); */
+    /* transform: scaleX(-1); */
 }
 
 /* Livestream video */
 .video-stream {
-    width: 50%    !important;
+    width: 50%   !important;
     height: auto   !important;
 }
 
