@@ -1,79 +1,15 @@
 <!DOCTYPE HTML><html>
 <head>
-  <title>ESP Web Server 4</title>
+  <title>Bot 4</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="data:,">
-  <style>
-  html {
-    font-family: Arial, Helvetica, sans-serif;
-    text-align: center;
-  }
-  h1 {
-    font-size: 1.8rem;
-    color: #ecf0f4;
-  }
-  h2{
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #143642;
-  }
-  .topnav {
-    overflow: hidden;
-    background-color: #008000;
-  }
-  body {
-    margin: 0;
-    background-color: #ecf0f4;
-  }
-  .content {
-    padding: 30px;
-    max-width: 600px;
-    margin: 0 auto;
-  }
-  .card {
-    background-color: #ecf0f4;
-    box-shadow: 2px 2px 12px 1px rgba(140,140,140,.5);
-    padding-top:10px;
-    padding-bottom:20px;
-  }
-  .button {
-    padding: 15px 50px;
-    font-size: 24px;
-    text-align: center;
-    outline: none;
-    color: #fff;
-    background-color: #0f8b8d;
-    border: none;
-    border-radius: 5px;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    -webkit-tap-highlight-color: rgba(0,0,0,0);
-   }
-   /*.button:hover {background-color: #0f8b8d}*/
-   .button:active {
-     background-color: #0f8b8d;
-     box-shadow: 2 2px #CDCDCD;
-     transform: translateY(2px);
-   }
-   .state {
-     font-size: 1.5rem;
-     color:#8c8c8c;
-     font-weight: bold;
-   }
-  </style>
-<title>ESP Web Server</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="icon" href="data:,">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
-<script src="../viewer.js" type="text/javascript"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+  <script src="../viewer.js" type="text/javascript"></script>
+  <link rel="stylesheet" href="../assets/styles.css">
 </head>
 <body>
-  <div class="topnav">
-    <h1>ESP WebSocket Sumobot 4 Server</h1>
+  <div class="bg-grn">
+    <h1>Sumobot 4</h1>
   </div>
   <div class="content">
     <div class="card">
@@ -81,7 +17,7 @@
     </div>
   </div>
   <div>
-      <video autoplay id='video'></video>
+      <video autoplay id='video' class="video-stream"></video>
   </div>
   <div>
     <img src ="../assets/controls.svg" width = 25%/>
