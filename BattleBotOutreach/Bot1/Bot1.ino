@@ -321,9 +321,10 @@ String processor(const String& var){
   if(var == "STATE"){
     if (flip){
       return "FORWARD";
-    }    }
-  }
-}
+    }    
+    }
+ }
+
 
 void setup(){
   // Serial port for debugging purposes
