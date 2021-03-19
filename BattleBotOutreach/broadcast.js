@@ -1,6 +1,10 @@
 /*  = () => {
     initLivestream();
 } */
+let supports = navigator.mediaDevices.getSupportedConstraints();
+if( supports['facingMode'] === true ) {
+  flipBtn.disabled = false;
+}
 
 async function initLivestream() {
     const stream = await navigator.mediaDevices.getUserMedia({ video: true });

@@ -1,40 +1,45 @@
 html {
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
-  }
-  h1 {
-    font-size: 1.8rem;
-    color: #ecf0f4;
-  }
-  h2{
+}
+h1 {
+font-size: 1.8rem;
+color: #ecf0f4;
+}
+h2{
+font-size: 1.5rem;
+font-weight: bold;
+color: #143642;
+}
+.topnav {
+overflow: hidden;
+background-color: #143642;
+}
+body {
+margin: 0;
+background-color: #ecf0f4;
+}
+.content {
+padding: 30px;
+max-width: 600px;
+margin: 0 auto;
+}
+.card {
+background-color: #ecf0f4;
+box-shadow: 2px 2px 12px 1px rgba(140,140,140,.5);
+padding-top:0.1rem;
+padding-bottom:0.1rem;
+}
+.state {
     font-size: 1.5rem;
+    color:#8c8c8c;
     font-weight: bold;
-    color: #143642;
-  }
-  .topnav {
-    overflow: hidden;
-    background-color: #143642;
-  }
-  body {
-    margin: 0;
-    background-color: #ecf0f4;
-  }
-  .content {
-    padding: 30px;
-    max-width: 600px;
-    margin: 0 auto;
-  }
-  .card {
-    background-color: #ecf0f4;
-    box-shadow: 2px 2px 12px 1px rgba(140,140,140,.5);
-    padding-top:0.1rem;
-    padding-bottom:0.1rem;
-  }
-   .state {
-     font-size: 1.5rem;
-     color:#8c8c8c;
-     font-weight: bold;
-   }
+}
+
+video {
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+}
 
 /* Livestream video */
 .video-stream {

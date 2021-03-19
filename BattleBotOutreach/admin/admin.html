@@ -50,10 +50,10 @@
   function onMessage(event) {
     var state;
     if (event.data == "1"){
-      state = "ON";
+      state = "CONNECTED";
     }
     else{
-      state = "OFF";
+      state = "DISCONNECTED";
     }
     document.getElementById('state').innerHTML = state;
   }
