@@ -1,8 +1,11 @@
 <!DOCTYPE HTML><html>
 <head>
-  <title>ESP Web Server 1</title>
+  <title>Bot 1</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="data:,">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+  <script src="../viewer.js" type="text/javascript"></script>
+  <link rel="stylesheet" href="../assets/styles.css">
   <style>
   html {
     font-family: Arial, Helvetica, sans-serif;
@@ -64,17 +67,7 @@
      color:#8c8c8c;
      font-weight: bold;
    }
-   video {
-  /* override other styles to make responsive */
-  width: 50%    !important;
-  height: auto   !important;
- }
   </style>
-<title>ESP Web Server</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="icon" href="data:,">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
-<script src="../viewer.js" type="text/javascript"></script>
 </head>
 <body>
   <div class="topnav">
@@ -86,7 +79,7 @@
     </div>
   </div>
   <div>
-      <video autoplay id='video'></video>
+      <video autoplay id='video' class="video-stream"></video>
   </div>
 <script>
   var gateway = `wss://sumobot.ddns.net/testproxy`; // points to ESP
