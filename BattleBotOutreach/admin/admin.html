@@ -11,19 +11,15 @@
   <div class="bg-grn">
     <h1>Admin Page</h1>
   </div>
-  <div class="content">
-    <div class="card">
-      <h2>Sumobot</h2>
-      <p class="state">state: <span id="state">%STATE%</span></p>
-    </div>
-  </div>
   <!-- Live stream source -->
   <div>
-    <video autoplay id="video"></video> 
+    <video autoplay id="video" class="video-stream"></video> 
   </div>
   <!-- Controls image source -->
-  <div>
-    <img src ="../assets/controls.svg" width = 25%/>
+  <div class="content">
+    <div class="card">
+      <p class="state">STATUS: <span id="state">CONNECTING...</span></p>
+    </div>
   </div>
 <script> 
   var gatewayBot = `wss://104.131.102.200:8086/ws`; 
