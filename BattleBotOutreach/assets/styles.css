@@ -36,8 +36,8 @@ padding-bottom:0.1rem;
 }
 
 video {
-    -webkit-transform: scaleX(-1);
-    transform: scaleX(-1);
+    /* -webkit-transform: scaleX(-1); */
+    /* transform: scaleX(-1); */
 }
 
 /* Livestream video */
