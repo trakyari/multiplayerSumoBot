@@ -34,8 +34,8 @@ bool flip;
 
 // Replace with your network credentials
 int userCount = 0;
-const char* ssid =  "Abdullai";
-const char* password = "babush7.";
+const char* ssid =  "GRDTuned";
+const char* password = "aaudirs4";
 
 
 // Create AsyncWebServer object on port 80
@@ -290,17 +290,11 @@ void onEvent(AsyncWebSocket *server, AsyncWebSocketClient *client, AwsEventType 
     switch (type) {
       case WS_EVT_CONNECT:
         Serial.printf("WebSocket client #%u connected from %s\n", client->id(), client->remoteIP().toString().c_str());
-        userCount++;
-        if(userCount >= 2){
-          ws.enable(false);
-        }
+        ws.enable(false);
         break;
       case WS_EVT_DISCONNECT:
         Serial.printf("WebSocket client #%u disconnected\n", client->id());
-        userCount--;
-        if(userCount < 2){
-          ws.enable(true);
-        }
+        ws.enable(true);
         leftMotor.write(90);
         rightMotor.write(90);
         break;

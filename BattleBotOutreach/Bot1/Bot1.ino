@@ -37,8 +37,8 @@ bool connectionState = 0;
 
 // Replace with your network credentials
 int userCount = 0;
-const char* ssid = "Abdullai";
-const char* password = "babush7.";
+const char* ssid = "GRDTuned";
+const char* password = "aaudirs4";
 
 
 // Create AsyncWebServer object on port 80
@@ -288,17 +288,11 @@ void onEvent(AsyncWebSocket *server, AsyncWebSocketClient *client, AwsEventType 
     switch (type) {
       case WS_EVT_CONNECT:
         Serial.printf("WebSocket client #%u connected from %s\n", client->id(), client->remoteIP().toString().c_str());
-        userCount++;
-        if(userCount >= 2){
-          ws.enable(false);
-        }
+        ws.enable(false);
         break;
       case WS_EVT_DISCONNECT:
         Serial.printf("WebSocket client #%u disconnected\n", client->id());
-        userCount--;
-        if(userCount < 2){
-          ws.enable(true);
-        }
+        ws.enable(true);
         leftMotor.write(90);
         rightMotor.write(90);
         break;
@@ -363,47 +357,7 @@ void setup(){
 void loop() {
   ws.cleanupClients();
 
-  while(flip){
-    leftFlip.write(0);
-    rightFlip.write(0);
-    
-  }
-
-  // Finder Code
-  while(finderState == 1){
-    Serial.println("In finder mode");
-    Serial.println(digitalRead(sensorPin));
-    if(digitalRead(sensorPin) == 0){
-      leftMotor.write(0);
-      rightMotor.write(0);
-      finderState = 0;
-      Serial.println("Exited finder mode");
-    }
-    leftMotor.write(180);
-    rightMotor.write(180);
-
-    delay(10);
-  }
-
-  while(liftState == 1){
-    actuator.write(180);
-    Serial.print("Lifting     ");
-    Serial.println(analogRead(potPin));
-    if(analogRead(potPin) >= 700){
-      actuator.write(90);
-      liftState = 0;
-    }
-  }
   
-   while(lowerState == 1){
-    actuator.write(0);
-    Serial.print("Lifting     ");
-    Serial.println(analogRead(potPin));
-    if(analogRead(potPin) < 50){
-      actuator.write(90);
-      lowerState = 0;
-    }
-  }
   
   leftMotor.write(leftSpeed);
   rightMotor.write(rightSpeed);

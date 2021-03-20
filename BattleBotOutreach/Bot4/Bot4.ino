@@ -35,8 +35,8 @@ bool lowerState = 0;
 bool flip;
 
 // Replace with your network credentials
-const char* ssid = "Abdullai";
-const char* password = "babush7.";
+const char* ssid = "GRDTuned";
+const char* password = "aaudirs4";
 
 bool ledState = 0;
 const int ledPin = 2;
@@ -288,11 +288,11 @@ void onEvent(AsyncWebSocket *server, AsyncWebSocketClient *client, AwsEventType 
     switch (type) {
       case WS_EVT_CONNECT:
         Serial.printf("WebSocket client #%u connected from %s\n", client->id(), client->remoteIP().toString().c_str());
-        //ws.enable(false);
+        ws.enable(false);
         break;
       case WS_EVT_DISCONNECT:
         Serial.printf("WebSocket client #%u disconnected\n", client->id());
-        //ws.enable(true);
+        ws.enable(true);
         leftMotor.write(90);
         rightMotor.write(90);
         break;
