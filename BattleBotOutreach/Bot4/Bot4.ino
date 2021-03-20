@@ -35,8 +35,8 @@ bool lowerState = 0;
 bool flip;
 
 // Replace with your network credentials
-const char* ssid = "GRDTuned";
-const char* password = "aaudirs4";
+const char* ssid = "Abdullai";
+const char* password = "babush7.";
 
 bool ledState = 0;
 const int ledPin = 2;
@@ -317,7 +317,7 @@ String processor(const String& var){
       return "FORWARD";
     }
     else{
-      return "BACKWARDS";
+      return "CONNECTED";
     }
   }
 }
