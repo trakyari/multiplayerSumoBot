@@ -37,8 +37,8 @@ bool connectionState = 0;
 
 // Replace with your network credentials
 int userCount = 0;
-const char* ssid = "GRDTuned";
-const char* password = "aaudirs4";
+const char* ssid = "Abdullai";
+const char* password = "babush7.";
 
 
 // Create AsyncWebServer object on port 80
