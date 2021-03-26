@@ -5,6 +5,10 @@
   copies or substantial portions of the Software.
 *********/
 
+/* Front end is running on DigitalOcean server sumobot.ddns.net
+ * This is the command server for Bot5 in COD sumobot livestream
+ */
+
 // Import required libraries
 #include <ESP8266WiFi.h>
 #include <ESPAsyncTCP.h>
@@ -13,35 +17,31 @@
 #include <ESP8266mDNS.h>
 #include <Servo.h>
 
-// Motor Setup
+// Motor Setup for drive motors and bot specific features
 Servo leftMotor;
 Servo rightMotor;
-Servo actuator;
+Servo flipper;
 
-int sensorPin = 12;
-int potPin = 14;
+
 float leftSpeed = 90;
 float rightSpeed = 90;
-float actuatorSpeed = 90;
-bool leftState = 0;
-bool rightState = 0;
-bool fowardState = 0;
-bool backwardState = 0;
-bool finderState = 0;
-bool liftState = 0;
-bool lowerState = 0;
 
-// Replace with your network credentials
-const char* ssid = "GRDTuned";
-const char* password = "aaudirs4";
+bool flip= 0;
+
+// Replace with your network credentials of event location
+const char* ssid = "Abdullai";
+const char* password = "babush7.";
 
 bool ledState = 0;
 const int ledPin = 2;
 
-// Create AsyncWebServer object on port 80
+// Create AsyncWebServer object on port 2004, this is so tunnel can recoginize which bot 
 AsyncWebServer server(2004);
 AsyncWebSocket ws("/ws");
 
+
+// Test front end for deubgging network connection
+// need to change 
 const char index_html[] PROGMEM = R"rawliteral(
 <!DOCTYPE HTML><html>
 <head>
@@ -234,6 +234,8 @@ void notifyClients() {
   ws.textAll(String(ledState));
 }
 
+// Message handler to parse websocket messages
+// Wiring on Bot 5 is flipped for each motor
 void handleWebSocketMessage(void *arg, uint8_t *data, size_t len) {
   
   AwsFrameInfo *info = (AwsFrameInfo*)arg;
@@ -242,22 +244,22 @@ void handleWebSocketMessage(void *arg, uint8_t *data, size_t len) {
     data[len] = 0;
     if (strcmp((char*)data, "forward") == 0) {
       leftSpeed = 150;
-      rightSpeed = 150;
+      rightSpeed = 30;
       notifyClients();
     }
     else if (strcmp((char*)data, "backward") == 0) {
       leftSpeed = 30;
-      rightSpeed = 30;
+      rightSpeed = 150;
       notifyClients();
     }
     else if (strcmp((char*)data, "left") == 0) {
       leftSpeed = 30;
-      rightSpeed = 150;
+      rightSpeed = 30;
       notifyClients();
     }
     else if (strcmp((char*)data, "right") == 0) {
       leftSpeed = 150;
-      rightSpeed = 30;
+      rightSpeed = 150;
       notifyClients();
     }
     else if (strcmp((char*)data, "halt") == 0) {
@@ -266,20 +268,17 @@ void handleWebSocketMessage(void *arg, uint8_t *data, size_t len) {
       notifyClients();
     }
     else if (strcmp((char*)data, "flip") == 0) {
-      finderState = 1;
-      notifyClients();
-    }
-    else if (strcmp((char*)data, "lift") == 0){
-      liftState = 1;
-      notifyClients();
-    }
-    else if (strcmp((char*)data, "lower") == 0){
-      lowerState = 1;
+      flip = !flip;
       notifyClients();
     }
   }
 }
-      
+
+
+/* Disable the websocket when new user is connected
+ * Enable again when user leaves
+ * Send user commands to string proccessor
+ */
 void onEvent(AsyncWebSocket *server, AsyncWebSocketClient *client, AwsEventType type,
              void *arg, uint8_t *data, size_t len) {
     switch (type) {
@@ -325,12 +324,14 @@ void setup(){
 
   leftMotor.attach(13);
   rightMotor.attach(15);
+  flipper.attach(14);
+  
 
+  
   pinMode(ledPin, OUTPUT);
   digitalWrite(ledPin, LOW);
-  pinMode(potPin, INPUT);
 
-  pinMode(sensorPin, INPUT);
+
   // Connect to Wi-Fi
   WiFi.begin(ssid, password);
   while (WiFi.status() != WL_CONNECTED) {
@@ -357,8 +358,15 @@ void setup(){
 
 void loop() {
   ws.cleanupClients();
-  
 
+  if(flip){
+    flipper.write(160);
+  }
+  else {
+    flipper.write(90);
+  }
+    
+ 
   
   leftMotor.write(leftSpeed);
   rightMotor.write(rightSpeed);

@@ -35,8 +35,8 @@ bool lowerState = 0;
 bool flip;
 
 // Replace with your network credentials
-const char* ssid = "GRDTuned";
-const char* password = "aaudirs4";
+const char* ssid = "Abdullai";
+const char* password = "babush7.";
 
 bool ledState = 0;
 const int ledPin = 2;
@@ -244,22 +244,22 @@ void handleWebSocketMessage(void *arg, uint8_t *data, size_t len) {
   if (info->final && info->index == 0 && info->len == len && info->opcode == WS_TEXT) {
     data[len] = 0;
     if (strcmp((char*)data, "forward") == 0) {
-      leftSpeed = 150;
+      leftSpeed = 30;
       rightSpeed = 150;
       notifyClients();
     }
     else if (strcmp((char*)data, "backward") == 0) {
-      leftSpeed = 30;
+      leftSpeed = 150;
       rightSpeed = 30;
       notifyClients();
     }
     else if (strcmp((char*)data, "left") == 0) {
-      leftSpeed = 30;
+      leftSpeed = 150;
       rightSpeed = 150;
       notifyClients();
     }
     else if (strcmp((char*)data, "right") == 0) {
-      leftSpeed = 150;
+      leftSpeed = 30;
       rightSpeed = 30;
       notifyClients();
     }
@@ -374,41 +374,7 @@ void loop() {
   }
     
   
-  // Finder Code
-  while(finderState == 1){
-    Serial.println("In finder mode");
-    Serial.println(digitalRead(sensorPin));
-    if(digitalRead(sensorPin) == 0){
-      leftMotor.write(0);
-      rightMotor.write(0);
-      finderState = 0;
-      Serial.println("Exited finder mode");
-    }
-    leftMotor.write(180);
-    rightMotor.write(180);
 
-    delay(10);
-  }
-
-  while(liftState == 1){
-    actuator.write(180);
-    Serial.print("Lifting     ");
-    Serial.println(analogRead(potPin));
-    if(analogRead(potPin) >= 700){
-      actuator.write(90);
-      liftState = 0;
-    }
-  }
-  
-   while(lowerState == 1){
-    actuator.write(0);
-    Serial.print("Lifting     ");
-    Serial.println(analogRead(potPin));
-    if(analogRead(potPin) < 50){
-      actuator.write(90);
-      lowerState = 0;
-    }
-  }
   
   leftMotor.write(leftSpeed);
   rightMotor.write(rightSpeed);

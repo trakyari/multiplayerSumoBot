@@ -314,7 +314,7 @@ String processor(const String& var){
   Serial.println(var);
   if(var == "STATE"){
     if (flip){
-      return "FORWARD";
+      return "CONNECTED";
     }    
     }
  }
