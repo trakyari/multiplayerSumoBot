@@ -41,3 +41,8 @@ peer.setRemoteDescription(desc).catch(e => console.log(e));
 function handleTrackEvent(e) {
 document.getElementById("video").srcObject = e.streams[0];
 };
+
+function closePeer() {
+    console.log('Closing webRTC connection.');
+    peer.close();
+}

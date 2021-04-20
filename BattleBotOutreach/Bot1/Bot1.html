@@ -39,12 +39,26 @@
     console.log('Connection closed');
     setTimeout(initWebSocket, 2000);
   }
+
+  function initVisChange() {
+    window.addEventListener("visibilitychange", visChange());
+  }
+
+  function visChange() {
+    if (document.visibilityState === 'hidden') {
+        closePeer();
+    } 
+    if (document.visibilityState === 'visible') {
+      console.log('webRTC opened.');
+    }
+  }
+
   function onMessage(event) {
     var state;
     if (event.data == "1"){
       state = "CONNECTED";
     }
-    else{
+    else {
       state = "CONNECTED";
     }
     document.getElementById('state').innerHTML = state;
@@ -94,6 +108,7 @@
     initWebSocket();
     initButton();
     initStream();
+    initVisChange();
   }
   function initButton() {
     document.addEventListener('keydown', keyDown);
