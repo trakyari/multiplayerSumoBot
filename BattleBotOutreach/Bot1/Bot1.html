@@ -58,7 +58,7 @@
     if (event.data == "1"){
       state = "CONNECTED";
     }
-    else {
+    else{
       state = "CONNECTED";
     }
     document.getElementById('state').innerHTML = state;
@@ -108,7 +108,7 @@
     initWebSocket();
     initButton();
     initStream();
-    initVisChange();
+    // initVisChange();
   }
   function initButton() {
     document.addEventListener('keydown', keyDown);
