@@ -16,7 +16,7 @@ var path = require('path');
 let senderStream;
 
 app.use(express.static(__dirname)); // main directory
-app.use(express.static('assets'));
+app.use(express.static('assets')); // includes 'assets' folder 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 

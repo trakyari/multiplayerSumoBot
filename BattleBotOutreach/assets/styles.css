@@ -46,6 +46,10 @@ video {
     height: auto   !important;
 }
 
+.robot-img {
+    
+}
+
 /* Button and background */
 .btn-grn, .bg-grn {
     background-color: #008000;

@@ -45,12 +45,13 @@
   }
 
   function visChange() {
-    if (document.visibilityState === 'hidden') {
-        closePeer();
-    } 
     if (document.visibilityState === 'visible') {
       console.log('webRTC opened.');
     }
+    else {
+      closePeer();
+      console.log('Closing webRTC connection.');
+    } 
   }
 
   function onMessage(event) {
