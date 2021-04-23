@@ -2,5 +2,5 @@
 
 
 TODO:
-all things documentation
-optimize livestream
+/nall things documentation
+/noptimize livestream
