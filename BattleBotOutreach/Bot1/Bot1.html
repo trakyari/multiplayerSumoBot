@@ -40,20 +40,6 @@
     setTimeout(initWebSocket, 2000);
   }
 
-  function initVisChange() {
-    window.addEventListener("visibilitychange", visChange());
-  }
-
-  function visChange() {
-    if (document.visibilityState === 'visible') {
-      console.log('webRTC opened.');
-    }
-    else {
-      closePeer();
-      console.log('Closing webRTC connection.');
-    } 
-  }
-
   function onMessage(event) {
     var state;
     if (event.data == "1"){
@@ -109,7 +95,6 @@
     initWebSocket();
     initButton();
     initStream();
-    initVisChange();
   }
   function initButton() {
     document.addEventListener('keydown', keyDown);
