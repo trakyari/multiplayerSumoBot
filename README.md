@@ -33,7 +33,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/trakyari/multiplayerSumoBot">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="BattleBotOutreach/assets/logo.png" alt="Logo" width="250" height="250">
   </a>
 
   <h3 align="center">Sumobot</h3>
@@ -85,7 +85,10 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+<div align="center">
+<img src="BattleBotOutreach/assets/index.png" alt="Robot" width="75%" height="auto">
+</div>
+
 Sumobot project created by the College of DuPage Engineering & Technology Club during the 2020/2021 school year. Features ESP8266 powered robots that can be controlled over the internet and also viewed through a live stream.
 
 **To avoid retyping too much info. Do a search and replace with your text editor for the following:**
@@ -106,26 +109,67 @@ Sumobot project created by the College of DuPage Engineering & Technology Club d
 To get a local copy up and running follow these simple steps.
 
 ### Prerequisites
+Disclaimer: The current implentation relies on a cloud server for the livestream and reverse proxy of websockets. Running this locally is possible, however the livestream will not work as it requires a valid TURN server for the webRTC implementation.
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
-
+* robots assembled and connected to WiFi. Robot IP's must be set in the cloud server web server (NGINX/Apache) on a reverse proxy to redirect WSS to WS.
+Example config for NGINX: 
+```sh
+location /proxyBotExample {
+    proxy_pass http://example.domain:desiredPort/ws;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection "upgrade";
+}
+```
+* Each robot page must also be configured (`bot1.html` example):
+```sh
+location /proxyBotExample {
+    proxy_pass http://example.domain:desiredPort/ws;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection "upgrade";
+}
+``` 
 ### Installation
 
-1. Clone the repo
+1. Clone the repo into your cloud server
    ```sh
    git clone https://github.com/trakyari/multiplayerSumoBot.git
    ```
-2. Install NPM packages
+2. 
+   ```sh
+   cd multiplayerSumoBot/BattleBotOutreach
+   ```
+   
+3. Install NPM packages
    ```sh
    npm install
    ```
+4. Start the server using a process manager (we'll use PM2)
+   ```sh
+   sudo -u nodejs pm2 start server.js
+   ```
+### Usage (locally)
+Warning: Running it locally will prevent the livestream from working without a valid TURN server setup and configured in the `server.js`
+This is an example of how to list things you need to use the software and how to install them.
 
-
-
+1. modify each bot html file (if running locally!)
+```sh
+  var gateway = `ws://LANrobotIP/ws`; // points to ESP
+```
+2. 
+   ```sh
+   cd multiplayerSumoBot/BattleBotOutreach
+   ```
+3. Install NPM packages
+   ```sh
+   npm install
+   ```
+4. Start app
+   ```sh
+   node server.js
+   ```
+   
 <!-- USAGE EXAMPLES -->
 ## Usage
 
@@ -169,18 +213,10 @@ Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email
 
 Project Link: [https://github.com/trakyari/multiplayerSumoBot](https://github.com/trakyari/multiplayerSumoBot)
 
-
-
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements
 
 * [Nikita Lukhanin](https://github.com/nikitalukhanin)
-* []()
-* []()
-
-
-
-
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
