@@ -39,12 +39,11 @@
   <h3 align="center">Sumobot</h3>
 
   <p align="center">
-    Sumobot game that features robots battling in an arena.
+    Sumobot game that features remote controlled robots battling in an arena. These robots can be controlled from anywhere in the world via user input and a livestream 
     <br />
     <a href="https://github.com/trakyari/multiplayerSumoBot"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/trakyari/multiplayerSumoBot">View Demo</a>
     ·
     <a href="https://github.com/trakyari/multiplayerSumoBot/issues">Report Bug</a>
     ·
