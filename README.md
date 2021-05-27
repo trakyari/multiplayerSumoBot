@@ -198,7 +198,7 @@ We used a reverse ssh tun
 <div align="center">
   <img src="BattleBotOutreach/assets/2021-03-19_23-31.png" alt="Robot" width="75%" height="auto">
 </div>
-Diagram courtesy of Nikita Lukhanin 
+Diagram courtesy of [Nikita Lukhanin](https://nikitalukhanin.github.io/)
 <!-- USAGE EXAMPLES -->
 
 ## Usage
@@ -239,7 +239,8 @@ Distributed under the MIT License. See `LICENSE` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email
+Blerim Abdullai - email - bl3rimabdullai@gmail.com
+Arijus Trakymas - email - 
 
 Project Link: [https://github.com/trakyari/multiplayerSumoBot](https://github.com/trakyari/multiplayerSumoBot)
 
