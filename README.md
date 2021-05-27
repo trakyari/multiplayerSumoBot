@@ -123,12 +123,7 @@ location /proxyBotExample {
 ```
 * Each robot page must also be configured (`bot1.html` example):
 ```sh
-location /proxyBotExample {
-    proxy_pass http://example.domain:desiredPort/ws;
-    proxy_http_version 1.1;
-    proxy_set_header Upgrade $http_upgrade;
-    proxy_set_header Connection "upgrade";
-}
+  var gateway = `wss://example.domain/proxyBotExample`; // points to ESP
 ``` 
 ### Installation
 
