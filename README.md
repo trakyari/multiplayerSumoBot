@@ -106,10 +106,13 @@ Sumobot project created by the College of DuPage Engineering & Technology Club d
 <!-- GETTING STARTED -->
 ## Getting Started
 
-To get a local copy up and running follow these simple steps.
+## Website Setup
+To get a local copy of our app running follow these simple steps.
 
 ### Prerequisites
 Disclaimer: The current implentation relies on a cloud server for the livestream and reverse proxy of websockets. Running this locally is possible, however the livestream will not work as it requires a valid TURN server for the webRTC implementation.
+We personally followed this tutorial 
+https://ourcodeworld.com/articles/read/1175/how-to-create-and-configure-your-own-stun-turn-server-with-coturn-in-ubuntu-18-04
 
 * robots assembled and connected to WiFi. Robot IP's must be set in the cloud server web server (NGINX/Apache) on a reverse proxy to redirect WSS to WS.
 Example config for NGINX: 
