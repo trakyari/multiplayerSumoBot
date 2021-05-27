@@ -195,7 +195,9 @@ We used a reverse ssh tunnel in order to redirect traffic from specified bot por
 <div align="center">
   <img src="BattleBotOutreach/assets/2021-03-19_23-31.png" alt="Robot" width="75%" height="auto">
 </div>
-Diagram courtesy of [Nikita Lukhanin](https://nikitalukhanin.github.io/)
+Diagram courtesy of 
+
+[Nikita Lukhanin](https://nikitalukhanin.github.io/)
 <!-- USAGE EXAMPLES -->
 
 ## Usage
