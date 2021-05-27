@@ -43,8 +43,6 @@
     <br />
     <a href="https://github.com/trakyari/multiplayerSumoBot"><strong>Explore the docs »</strong></a>
     <br />
-    <br />
-    ·
     <a href="https://github.com/trakyari/multiplayerSumoBot/issues">Report Bug</a>
     ·
     <a href="https://github.com/trakyari/multiplayerSumoBot/issues">Request Feature</a>
