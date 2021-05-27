@@ -115,7 +115,7 @@ Disclaimer: The current implentation relies on a cloud server for the livestream
 We personally followed this tutorial 
 https://ourcodeworld.com/articles/read/1175/how-to-create-and-configure-your-own-stun-turn-server-with-coturn-in-ubuntu-18-04
 
-* robots assembled and connected to WiFi. Robot IP's must be set in the cloud server web server (NGINX/Apache) on a reverse proxy to redirect WSS to WS.
+* Robots assembled and connected to WiFi. Robot IP's must be set in the cloud server web server (NGINX/Apache) on a reverse proxy to redirect WSS to WS. We needed to do this because the current implementation of ESPAsyncWebserver cannont accept secure connections.
 Example config for NGINX: 
 ```sh
 location /proxyBotExample {
@@ -127,7 +127,7 @@ location /proxyBotExample {
 ```
 * Each robot page must also be configured (`bot1.html` example):
 ```sh
-  var gateway = `wss://example.domain/proxyBotExample`; // points to ESP
+  var gateway = `wss://example.domain/proxyBotExample`; // points to ESP proxy
 ``` 
 ### Installation
 
