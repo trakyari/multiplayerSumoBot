@@ -239,8 +239,9 @@ Distributed under the MIT License. See `LICENSE` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Blerim Abdullai - email - bl3rimabdullai@gmail.com
-Arijus Trakymas - email - 
+Blerim Abdullai - email bl3rimabdullai@gmail.com
+
+Arijus Trakymas - email 
 
 Project Link: [https://github.com/trakyari/multiplayerSumoBot](https://github.com/trakyari/multiplayerSumoBot)
 
