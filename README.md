@@ -36,7 +36,7 @@
     <img src="BattleBotOutreach/assets/logo.png" alt="Logo" width="250" height="250">
   </a>
 
-  <h3 align="center">Sumobot</h3>
+  <h2 align="center">ETC Sumobot Outreach</h3>
 
   <p align="center">
     Sumobot game that features remote controlled robots battling in an arena. These robots can be controlled from anywhere in the world via user input and a livestream. 
