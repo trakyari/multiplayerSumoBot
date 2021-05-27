@@ -172,7 +172,7 @@ This is an example of how to list things you need to use the software and how to
 ## HardWare Setup
 
 ### Reverse SSH Tunnel
-We used a reverse ssh tunnel in order to redirect traffic from specified bot ports to their respective sumobot
+We used a reverse ssh tunnel in order to redirect traffic from specified bot ports to their respective sumobot. This also enables the project to be taken anywhere as long as the host computer and ESPs are all on the same LAN.
 1. Make sure each Bot has the proper SSID and password
    ```sh
    const char* ssid = "your ssid";
