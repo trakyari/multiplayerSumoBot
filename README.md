@@ -214,6 +214,7 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 * Queue system in order to manage multiple players trying to join the same bot
 * Autonomous reseting using line following sensors
 * Further optmize live stream to minimize compounding delays 
+
 See the [open issues](https://github.com/trakyari/multiplayerSumoBot/issues) for a list of proposed features (and known issues).
 
 
