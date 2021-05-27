@@ -88,8 +88,7 @@
 
 Sumobot project created by the College of DuPage Engineering & Technology Club during the 2020/2021 school year. Features ESP8266 powered robots that can be controlled over the internet via the users arrow keys and a low latency livestream. This project was used in conjunction with an educational presentation for numerous outreach events. These events reached the local homeschool community, Chicago Public Schools, as well as COD's anual STEMCON. To see the robots in action please visit the usage page.
 
-**To avoid retyping too much info. Do a search and replace with your text editor for the following:**
-`github_username`, `repo_name`, `twitter_handle`, `email`, `project_title`, `project_description`
+
 
 
 ### Built With
@@ -267,3 +266,4 @@ Project Link: [https://github.com/trakyari/multiplayerSumoBot](https://github.co
 [license-url]: https://github.com/trakyari/repo/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/arijus-trakymas-497226175/
+[linkedin-url]: https://www.linkedin.com/in/blerimabdullai/
