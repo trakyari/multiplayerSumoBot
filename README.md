@@ -187,12 +187,17 @@ We used a reverse ssh tun
      HostName sumobot.ddns.net
      User root
      Port 22
-     RemoteForward ServerPortBot1 es _bot1:Bot1Port
+     RemoteForward ServerPortBot1 esp_ip_bot1:ESPBot1Port
      RemoteForward ServerPortBot2 esp_ip_bot2:ESPBot2Port
      RemoteForward ServerPortBot3 esp_ip_bot3:ESPBot3Port
      RemoteForward ServerPortBot4 esp_ip_bot4:ESPBot4Port
      RemoteForward ServerPortBot5 esp_ip_bot5:ESPBot5Port
    ```
+### Circuit/Electrical
+<div align="center">
+  <img src="BattleBotOutreach/assets/2021-03-19_23-31.png" alt="Robot" width="75%" height="auto">
+</div>
+Diagram courtesy of Nikita Lukhanin 
 <!-- USAGE EXAMPLES -->
 ## Usage
 
