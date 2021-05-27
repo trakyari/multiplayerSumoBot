@@ -167,7 +167,21 @@ This is an example of how to list things you need to use the software and how to
    ```sh
    node server.js
    ```
-   
+
+## HardWare Setup
+
+### Reverse SSH Tunnel
+We used a reverse ssh tun
+1. Make sure each Bot has the proper SSID and password
+   ```sh
+   const char* ssid = "your ssid";
+   const char* password = "your password";
+   ```
+2. Be sure to make each port on each bot unique
+   ```sh
+   AsyncWebSocket server(Unique port for Bot);
+   ```
+3. Setup up a for the Reverse SSH Tunnel
 <!-- USAGE EXAMPLES -->
 ## Usage
 
