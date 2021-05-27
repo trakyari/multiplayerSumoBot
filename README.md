@@ -180,7 +180,7 @@ We used a reverse ssh tunnel in order to redirect traffic from specified bot por
    ```
 2. Be sure to make each port on each bot unique
    ```sh
-   AsyncWebSocket server(Unique port for Bot);
+   AsyncWebSocket server(Unique_port_for_BotX);
    ```
 3. Setup up a ssh config file like this one for the Reverse SSH Tunnel
    ```sh
