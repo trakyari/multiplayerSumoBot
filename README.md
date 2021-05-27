@@ -89,7 +89,7 @@
 <img src="BattleBotOutreach/assets/index.png" alt="Robot" width="75%" height="auto">
 </div>
 
-Sumobot project created by the College of DuPage Engineering & Technology Club during the 2020/2021 school year. Features ESP8266 powered robots that can be controlled over the internet and also viewed through a live stream.
+Sumobot project created by the College of DuPage Engineering & Technology Club during the 2020/2021 school year. Features ESP8266 powered robots that can be controlled over the internet via the users arrow keys and a low latency livestream. This project was used in conjunction with an educational presentation for numerous outreach events. These events reached the local homeschool community, Chicago Public Schools, as well as COD's anual STEMCON.
 
 **To avoid retyping too much info. Do a search and replace with your text editor for the following:**
 `github_username`, `repo_name`, `twitter_handle`, `email`, `project_title`, `project_description`
