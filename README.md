@@ -33,7 +33,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/trakyari/multiplayerSumoBot">
-    <img src="BattleBotOutreach/assets/logo.png" alt="Logo" width="250" height="250">
+    <img src="BattleBotOutreach/assets/logo.png" alt="Logo" width="50%" height="auto">
   </a>
 
   <h2 align="center">ETC Sumobot Outreach</h3>
@@ -165,7 +165,7 @@ This is an example of how to list things you need to use the software and how to
    node server.js
    ```
 
-## HardWare Setup
+## Hardware Setup
 
 ### Reverse SSH Tunnel
 We used a reverse ssh tunnel in order to redirect traffic from specified bot ports to their respective sumobot. This also enables the project to be taken anywhere as long as the host computer and ESPs are all on the same LAN.
@@ -178,10 +178,17 @@ We used a reverse ssh tunnel in order to redirect traffic from specified bot por
    ```sh
    AsyncWebSocket server(Unique_port_for_BotX);
    ```
-3. Setup up a ssh config file like this one for the Reverse SSH Tunnel
+3. Create SSH config file (if it doesn't exist already) 
    ```sh
-   Host sumo
-     HostName sumobot.ddns.net
+   touch ~/.ssh/config
+   ```
+   ```sh
+   vim ~/.ssh/config
+   ```
+4. Setup up a ssh config file like this one for the Reverse SSH Tunnel
+   ```sh
+   Host example
+     HostName example.domain
      User root
      Port 22
      RemoteForward ServerPortBot1 esp_ip_bot1:ESPBot1Port
@@ -189,6 +196,10 @@ We used a reverse ssh tunnel in order to redirect traffic from specified bot por
      RemoteForward ServerPortBot3 esp_ip_bot3:ESPBot3Port
      RemoteForward ServerPortBot4 esp_ip_bot4:ESPBot4Port
      RemoteForward ServerPortBot5 esp_ip_bot5:ESPBot5Port
+   ```
+5. Start the reverse SSH tunnel by calling the config shortcut
+   ```sh
+   ssh example
    ```
 ### Circuit/Electrical
 <div align="center">
