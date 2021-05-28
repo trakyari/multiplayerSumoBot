@@ -33,7 +33,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/trakyari/multiplayerSumoBot">
-    <img src="BattleBotOutreach/assets/logo.png" alt="Logo" width="50%" height="auto">
+    <img src="BattleBotOutreach/assets/logo.png" alt="Logo" width="35%" height="auto">
   </a>
 
   <h2 align="center">ETC Sumobot Outreach</h3>
@@ -98,8 +98,6 @@ Sumobot project created by the College of DuPage Engineering & Technology Club d
 * [webRTC]()
 * [ESPAsyncWebServer](https://github.com/me-no-dev/ESPAsyncWebServer)
 
-
-
 <!-- GETTING STARTED -->
 ## Getting Started
 
@@ -108,8 +106,6 @@ To get a local copy of our app running follow these simple steps.
 
 ### Prerequisites
 Disclaimer: The current implentation relies on a cloud server for the livestream and reverse proxy of websockets. Running this locally is possible, however the livestream will not work as it requires a valid TURN server for the webRTC implementation.
-We personally followed this tutorial 
-https://ourcodeworld.com/articles/read/1175/how-to-create-and-configure-your-own-stun-turn-server-with-coturn-in-ubuntu-18-04
 
 * Robots assembled and connected to WiFi. Robot IP's must be set in the cloud server web server (NGINX/Apache) on a reverse proxy to redirect WSS to WS. We needed to do this because the current implementation of ESPAsyncWebserver cannont accept secure connections.
 Example config for NGINX: 
@@ -125,6 +121,7 @@ location /proxyBotExample {
 ```sh
   var gateway = `wss://example.domain/proxyBotExample`; // points to ESP proxy
 ``` 
+* A TURN server setup and running [(how to setup a TURN server)](https://ourcodeworld.com/articles/read/1175/how-to-create-and-configure-your-own-stun-turn-server-with-coturn-in-ubuntu-18-04)
 ### Installation
 
 1. Clone the repo into your cloud server
