@@ -146,7 +146,7 @@ Warning: Running it locally will prevent the livestream from working without a v
 This is an example of how to list things you need to use the software and how to install them.
 
 1. modify each bot html file (if running locally!)
-```sh
+```js
   var gateway = `ws://LANrobotIP/ws`; // points to ESP
 ```
 2. 
@@ -167,12 +167,12 @@ This is an example of how to list things you need to use the software and how to
 ### Reverse SSH Tunnel
 We used a reverse ssh tunnel in order to redirect traffic from specified bot ports to their respective sumobot. This also enables the project to be taken anywhere as long as the host computer and ESPs are all on the same LAN.
 1. Make sure each Bot has the proper SSID and password
-   ```sh
+   ```cpp
    const char* ssid = "your ssid";
    const char* password = "your password";
    ```
 2. Be sure to make each port on each bot unique
-   ```sh
+   ```cpp
    AsyncWebSocket server(Unique_port_for_BotX);
    ```
 3. Create SSH config file (if it doesn't exist already) 
@@ -183,7 +183,7 @@ We used a reverse ssh tunnel in order to redirect traffic from specified bot por
    vim ~/.ssh/config
    ```
 4. Setup up a ssh config file like this one for the Reverse SSH Tunnel
-   ```sh
+   ```yaml
    Host example
      HostName example.domain
      User root
