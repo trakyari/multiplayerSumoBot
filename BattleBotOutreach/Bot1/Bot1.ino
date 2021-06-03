@@ -85,7 +85,7 @@ const char index_html[] PROGMEM = R"rawliteral(
 </head>
 <body>
   <div class="topnav">
-    <h1>ESP WebSocket Sumobot 1 Server</h1>
+    <h1>ESP WebSocket Sumobot 1 ESP Landing</h1>
   </div>
  </body>
 </html>
