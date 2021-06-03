@@ -244,22 +244,22 @@ void handleWebSocketMessage(void *arg, uint8_t *data, size_t len) {
     data[len] = 0;
     if (strcmp((char*)data, "forward") == 0) {
       leftSpeed = 150;
-      rightSpeed = 30;
+      rightSpeed = 150;
       notifyClients();
     }
     else if (strcmp((char*)data, "backward") == 0) {
       leftSpeed = 30;
-      rightSpeed = 150;
+      rightSpeed = 30;
       notifyClients();
     }
     else if (strcmp((char*)data, "left") == 0) {
       leftSpeed = 30;
-      rightSpeed = 30;
+      rightSpeed = 150;
       notifyClients();
     }
     else if (strcmp((char*)data, "right") == 0) {
       leftSpeed = 150;
-      rightSpeed = 150;
+      rightSpeed = 30;
       notifyClients();
     }
     else if (strcmp((char*)data, "halt") == 0) {

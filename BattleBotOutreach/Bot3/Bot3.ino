@@ -243,26 +243,26 @@ void handleWebSocketMessage(void *arg, uint8_t *data, size_t len) {
   if (info->final && info->index == 0 && info->len == len && info->opcode == WS_TEXT) {
     data[len] = 0;
     if (strcmp((char*)data, "forward") == 0) {
-      leftSpeed = 120;
-      rightSpeed = 120;
+      leftSpeed = 30;
+      rightSpeed = 150;
       Serial.println("Up");
       notifyClients();
     }
     else if (strcmp((char*)data, "backward") == 0) {
-      leftSpeed = 60;
-      rightSpeed = 60;
+      leftSpeed = 150;
+      rightSpeed = 30;
       Serial.println("down");
       notifyClients();
     }
     else if (strcmp((char*)data, "left") == 0) {
-      leftSpeed = 120;
-      rightSpeed = 60;
+      leftSpeed = 30;
+      rightSpeed = 30;
       Serial.println("left");
       notifyClients();
     }
     else if (strcmp((char*)data, "right") == 0) {
-      leftSpeed = 60;
-      rightSpeed = 120;
+      leftSpeed = 150;
+      rightSpeed = 150;
       Serial.println("right");
       notifyClients();
     }
@@ -273,7 +273,7 @@ void handleWebSocketMessage(void *arg, uint8_t *data, size_t len) {
       notifyClients();
     }
     else if (strcmp((char*)data, "flip") == 0) {
-      flip = 1;
+      flip = !flip;
       notifyClients();
     }
     else if (strcmp((char*)data, "lift") == 0){
@@ -340,7 +340,7 @@ void setup(){
   rightMotor.attach(15);
   leftFlip.attach(leftFlipPin);
   rightFlip.attach(rightFlipPin);
-  leftFlip.write(143);
+  leftFlip.write(90);
   rightFlip.write(10);
   //pinMode(potPin, INPUT);
 
@@ -372,6 +372,12 @@ void setup(){
 void loop() {
   ws.cleanupClients();
 
+  if(flip)
+    leftFlip.write(160);
+  else
+    leftFlip.write(90);
+
+  /*
   int time_now = millis();
   int period = 500;
   int servoDelay = 50;
@@ -385,6 +391,8 @@ void loop() {
 
   leftFlip.write(leftBstop);
   rightFlip.write(rightBstop);
+
+  
   
   while(flip){
     leftFlip.write(leftBstop);
@@ -413,7 +421,7 @@ void loop() {
     rightFlip.write(143);
     flip = 0;
   }
-    
+  */
   
  
   leftMotor.write(leftSpeed);
