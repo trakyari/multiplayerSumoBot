@@ -20,12 +20,13 @@
 *** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
+
+<!-- [ ![Build Status](https://github.com/trakyari/multiplayerSumoBot/actions/workflows/README.md/badge.svg) -->
+<!--  [![Contributors][contributors-shield]][contributors-url] -->
+<!-- [![Forks][forks-shield]][forks-url] -->
+<!--  [![Stargazers][stars-shield]][stars-url] -->
+<!-- ![MIT License][license-shield]][license-url] -->
+<!--  [![LinkedIn][linkedin-shield]][linkedin-url] -->
 
 
 
@@ -262,8 +263,8 @@ Project Link: [https://github.com/trakyari/multiplayerSumoBot](https://github.co
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/trakyari/repo.svg?style=for-the-badge
-[contributors-url]: https://github.com/trakyari/multiplayerSumoBot/graphs/contributors
+[contributors-shield]: https://img.shields.io/github/contributors/trakyari/multiplayerSumoBot.repo.svg?style=for-the-badge
+[contributors-url]: https://github.com/trakyari/multiplayerSumoBot/contributors
 [forks-shield]: https://img.shields.io/github/forks/trakyari/repo.svg?style=for-the-badge
 [forks-url]: https://github.com/trakyari/repo/network/members
 [stars-shield]: https://img.shields.io/github/stars/trakyari/repo.svg?style=for-the-badge
