@@ -210,7 +210,7 @@ Diagram courtesy of
 
 ## Usage
 
-We are currenntly working to create videos showcasing the events this project was used in, for now our stemcon livestream can be viewed [here](https://youtu.be/_s9nmKtqTO0). 
+We are currently working to create videos showcasing the events this project was used in, for now our stemcon livestream can be viewed [here](https://youtu.be/_s9nmKtqTO0). 
 
 _For more examples, please refer to the [Documentation](https://example.com)_
 
